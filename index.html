@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f0f0f0;
+        }
+
+        nav {
+          background-color: #fff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          padding: 10px 20px;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+        }
+        
+        nav ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: space-around;
+        }
+        
+        nav ul li {
+          margin: 0 10px;
+        }
+        
+        nav ul li a {
+          text-decoration: none;
+          color: #ffa500; /* Faint orange */
+          font-weight: bold;
+          transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+          color: #ff4500; /* Dark orange */
+        }
+        
+        .gallery {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          margin: 20px;
+        }
+        
+        .gallery figure {
+          position: relative;
+          margin: 10px;
+          overflow: hidden;
+          cursor: pointer;
+          max-width: 300px;
+          background-color: #fff;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease-out;
+        }
+        
+        .gallery figure:hover {
+          transform: translateY(-5px);
+        }
+        
+        .gallery img {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+        
+        .gallery figcaption {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 10px;
+          background-color: rgba(0, 0, 0, 0.7);
+          color: #fff;
+          font-size: 14px;
+          text-align: center;
+          opacity: 0;
+          transition: opacity 0.3s ease-out;
+        }
+        
+        .gallery figure:hover figcaption {
+          opacity: 1;
+        }
+        
+        .popup {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease-out;
+        }
+        
+        .popup.show {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        
+        .popup-content {
+          position: relative;
+          max-width: 90%;
+          max-height: 90%;
+          overflow: auto;
+          background-color: #fff;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        
+        .popup-content img {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+          margin: auto;
+        }
+        
+        .close-btn {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          color: #000;
+          font-size: 24px;
+          cursor: pointer;
+          transition: transform 0.3s ease-out;
+        }
+
+        .close-btn:hover {
+          transform: scale(1.2);
+        }
+
+        .validate-btn {
+          align-self: flex-end;
+          margin-top: 10px;
+          padding: 8px 16px;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+        .validate-btn:hover {
+          background-color: #45a049;
+        }
+
+        footer {
+          background-color: #fff;
+          text-align: center;
+          padding: 10px 0;
+          box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+          margin-top: 20px;
+        }
+
+   
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="gallery">
+      <figure>
+        <a href="#">
+          <img src="certificates/ciscojan2023.jpg" alt="Cisco HTml">
+          <figcaption>Cisco HTml</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/developergoogleai.jpg" alt="Google AI Developer">
+          <figcaption>Google AI Developer</figcaption>
+        </a>
+      </figure>
+      
+      <figure>
+        <a href="#">
+          <img src="certificates/developergooglec++dsa.jpg" alt="Google C++ DSA">
+          <figcaption>Google C++ DSA</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/gesept22.jpg" alt="GE Certification">
+          <figcaption>GE Certification</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/googledigitalmarktoct22.jpg" alt="Google Digital Marketing">
+          <figcaption>Google Digital Marketing</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/hroct22.jpg" alt="HR Certification">
+          <figcaption>HR Certification</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/learntubejava22.jpg" alt="LearnTube Java Certification">
+          <figcaption>LearnTube Java Certification</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/markyotsept22.jpg" alt="Marky Certification">
+          <figcaption>Marky Certification</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/microsoftai.jpg" alt="Microsoft AI Certification">
+          <figcaption>Microsoft AI Certification</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/microsoftaisept22.jpg" alt="Microsoft AI Sept 2022">
+          <figcaption>Microsoft AI Sept 2022</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/microsoftc++dsa.jpg" alt="Microsoft C++ DSA">
+          <figcaption>Microsoft C++ DSA</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/microsoftc++dsasept22.jpg" alt="Microsoft C++ DSA Sept 2022">
+          <figcaption>Microsoft C++ DSA Sept 2022</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/perfectoopoct22.jpg" alt="Perfect OOP Oct 2022">
+          <figcaption>Perfect OOP Oct 2022</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/tcsion.jpg" alt="TCS iON Certification">
+          <figcaption>TCS iON Certification</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/walmartsept22.jpg" alt="Walmart Sept 2022">
+          <figcaption>Walmart Sept 2022</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/gr8python.jpeg" alt="Great Python Certification">
+          <figcaption>Great Python Certification</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/guvipython.jpeg" alt="GUVI Python Certification">
+          <figcaption>GUVI Python Certification</figcaption>
+        </a>
+      </figure>
+  
+      <figure>
+        <a href="#">
+          <img src="certificates/simpllearnsql.png" alt="Simplilearn SQL Certification">
+          <figcaption>Simplilearn SQL Certification</figcaption>
+        </a>
+      </figure>
+  </div>
+  
+  
+<!-- 
+    <div class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <img src="" alt="">
+            <button class="validate-btn">Validate</button>
+        </div>
+    </div> -->
+
+    <footer>
+      &copy;Valid and Verified
+    </footer>
+
+    
+
+    <script>
+        const gallery = document.querySelector('.gallery');
+        const popup = document.querySelector('.popup');
+        const popupContent = document.querySelector('.popup-content');
+        const closeBtn = document.querySelector('.close-btn');
+        
+        gallery.addEventListener('click', function(event) {
+          const figure = event.target.closest('figure');
+          if (!figure) return;
+          
+          const imgSrc = figure.querySelector('img').src;
+          const imgAlt = figure.querySelector('img').alt;
+          const figcaptionText = figure.querySelector('figcaption').innerHTML;
+          const validateLink = figure.dataset.validationLink;
+          
+          popupContent.innerHTML = `
+            <img src="${imgSrc}" alt="${imgAlt}">
+            <p>${figcaptionText}</p>
+            <a href="${validateLink}" target="_blank" class="validate-btn">Validate</a>
+          `;
+          popup.classList.add('show');
+        });
+        
+        closeBtn.addEventListener('click', function() {
+          popup.classList.remove('show');
+        });
+        
+        popup.addEventListener('click', function(event) {
+          if (event.target === popup) {
+            popup.classList.remove('show');
+          }
+        });
+    </script>
+</body>
+</html>
