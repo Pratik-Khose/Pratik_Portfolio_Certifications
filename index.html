@@ -313,14 +313,13 @@
   </div>
   
   
-<!-- 
+
     <div class="popup">
         <div class="popup-content">
             <span class="close-btn">&times;</span>
             <img src="" alt="">
-            <button class="validate-btn">Validate</button>
         </div>
-    </div> -->
+    </div>
 
     <footer>
       &copy;Valid and Verified
@@ -332,7 +331,6 @@
         const gallery = document.querySelector('.gallery');
         const popup = document.querySelector('.popup');
         const popupContent = document.querySelector('.popup-content');
-        const closeBtn = document.querySelector('.close-btn');
         
         gallery.addEventListener('click', function(event) {
           const figure = event.target.closest('figure');
@@ -346,7 +344,6 @@
           popupContent.innerHTML = `
             <img src="${imgSrc}" alt="${imgAlt}">
             <p>${figcaptionText}</p>
-            <a href="${validateLink}" target="_blank" class="validate-btn">Validate</a>
           `;
           popup.classList.add('show');
         });
